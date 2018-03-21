@@ -12,12 +12,16 @@ class IssueDisplay extends Component {
   
     componentDidMount(){
       const issue = this.props.issue;
-      const URL = "http://localhost:8080/issue?key=" + issue
+      /*const URL = "http://localhost:8080/issue?key=" + issue
       fetch(URL)
       .then(res => res.json())
       .then(json => {
+        console.log(json)
         this.setState({ issueData: json});
       });
+      */
+      this.setState({issueData: issue});
+      console.log(issue)
     }
   
     render(){
@@ -26,21 +30,19 @@ class IssueDisplay extends Component {
       return (
              <div>
                 <Row>
+                  <Col md={12} >
+                    <h2 className="red-text text-center"><Label bsStyle="primary">{this.state.issueData.Key}</Label></h2>
+                  </Col>
+                </Row>
+                <Row>
                     <Col md={2} >
                     <Label bsStyle="info">Summary</Label>
                     </Col>
-                    <Col md={2}>
+                    <Col md={10}>
                         {this.state.issueData.Summary}
                     </Col>
                 
                 </Row>
-                <Row>
-                {this.state.issueData.Summary}
-                </Row>
-                <Row>
-                {this.state.issueData.Summary}
-                </Row>
-                
              </div>
       )
     }

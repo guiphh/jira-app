@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import IssueDisplay from './IssueDisplay'
 import { Navbar, NavItem, Nav, Grid, Row, Col, NavbarBrand } from "react-bootstrap";
 
-const ISSUES = [
-    {key:'TAA-1', summary:'Summary 1'},
-    {key:'TAA-2', summary:'Summary 2'},
-    {key:'TAA-3', summary:'Summary 3'},
-  ]
-  
-
 class IssueList extends Component {
     constructor(){
         super();
@@ -26,6 +19,7 @@ class IssueList extends Component {
         fetch(URL)
         .then(res => res.json())
         .then(json => {
+          console.log(json)
             this.setState({issuesData: json})
         })
     }
@@ -37,7 +31,7 @@ class IssueList extends Component {
         return (
               <Row>
                 <Col md={2} sm={2}>
-                  <h3>Select an issue</h3>
+                  <h4>Issues in current sprint</h4>
                   <Nav 
                     bsStyle="pills"
                     stacked
@@ -55,7 +49,7 @@ class IssueList extends Component {
                   </Nav>
                 </Col>
                 <Col md={10} sm={10}>
-                  <IssueDisplay key={activeIssue} issue={issuesData[activeIssue].Key}/>
+                  <IssueDisplay key={activeIssue} issue={issuesData[activeIssue]}/>
                 </Col>
               </Row>
         );
